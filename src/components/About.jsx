@@ -1,28 +1,36 @@
 import { ShieldCheck, Target, Users } from "lucide-react";
 import React from "react";
+import { motion } from "framer-motion";
 
 const values = [
     {
         icon: Target,
         title: "Sin rodeos",
-        description: "Soluciones directas que resuelven lo que importa. Nada de funcionalidades que nadie pidio."
+        description: "Soluciones directas que resuelven lo que importa. Nada de funcionalidades que nadie pidió."
     },
     {
         icon: ShieldCheck,
-        title: "Codigo serio",
-        description: "Buenas practicas, seguridad de datosy arquitectura pensada para crecer en tu negocio."
+        title: "Código serio",
+        description: "Buenas prácticas, seguridad de datos y arquitectura pensada para crecer en tu negocio."
     },
     {
         icon: Users,
         title: "Siempre disponibles",
-        description: "Comunicacion abierta en cada etapa. Preguntas, cambios y dudas: estamos ahi."
+        description: "Comunicación abierta en cada etapa. Preguntas, cambios y dudas: estamos ahí."
     },
 ]
+
 export function About() {
     return (
-        <section id="nosotros" className="bg-muted px-6 py-24">
+        <section id="nosotros" className="bg-muted px-6 py-24 transition-colors duration-300">
             <div className="mx-auto max-w-6xl">
-                <div className="mb-16 max-w-2xl">
+                <motion.div 
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5 }}
+                    className="mb-16 max-w-2xl"
+                >
                     <p className="mb-3 text-sm font-medium uppercase tracking-widest text-primary">
                         Nosotros
                     </p>
@@ -30,14 +38,21 @@ export function About() {
                         Desarrolladores que entienden de negocios
                     </h2>
                     <p className="mt-4 text-lg leading-relaxed text-muted-foreground">
-                        No somos solo tecnicos. Entendemos que detras de cada sistema hay un negocio que necesita resultados concretos. Por eso cada solucion esta pensada para generar impacto real.
+                        No somos solo técnicos. Entendemos que detrás de cada sistema hay un negocio que necesita resultados concretos. Por eso cada solución está pensada para generar impacto real.
                     </p>
-                </div>
+                </motion.div>
 
                 <div className="grid gap-8 sm:grid-cols-3">
-                    {values.map((value) => (
-                        <div key={value.title} className="flex gap-4">
-                            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                    {values.map((value, index) => (
+                        <motion.div 
+                            key={value.title} 
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: index * 0.2, duration: 0.5 }}
+                            className="flex gap-4 group"
+                        >
+                            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
                                 <value.icon className="h-5 w-5" />
                             </div>
                             <div>
@@ -48,10 +63,10 @@ export function About() {
                                     {value.description}
                                 </p>
                             </div>
-                        </div>
+                        </motion.div>
                     ))}
                 </div>
             </div>
         </section>
     )
-} 
+}

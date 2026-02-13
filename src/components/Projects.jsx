@@ -1,6 +1,63 @@
-import { ArrowUpRight, Github } from "lucide-react";
-import React from "react";
-import { motion } from "framer-motion";
+import { ArrowUpRight, Github, ChevronRight } from "lucide-react";
+import React, { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+
+const PROJECTS_DATA = [
+    {
+        id: 1,
+        title: "Sistema Inmobiliario",
+        description: "Gestión integral de propiedades y clientes con panel administrativo.",
+        images: ["/inmobiliaria/1.png", "/inmobiliaria/2.png", "/inmobiliaria/Hero.jpeg", "/inmobiliaria/Ventas.jpeg", "/inmobiliaria/PropiedadDetalle.jpeg", "/inmobiliaria/PropiedadDetalle2.jpeg", "/inmobiliaria/Tasacion.jpeg", "/inmobiliaria/Contacto.jpeg"], 
+    },
+    {
+        id: 2,
+        title: "Ecommerce Camel Shop",
+        description: "Tienda online moderna con carrito dinámico y catálogo autogestionable.",
+        images: ["/camel1.jpg", "/camel2.jpg"],
+    },
+    {
+        id: 3,
+        title: "Plataforma Logística",
+        description: "Seguimiento de flotas en tiempo real con integración de facturación.",
+        images: ["/log1.jpg", "/log2.jpg"],
+    }
+];
+
+function AutoImageSwiper({ images }) {
+    const [index, setIndex] = useState(0);
+
+    useEffect(() => {
+        const timer = setInterval(() => {
+            setIndex((prev) => (prev + 1) % images.length);
+        }, 3000); 
+        return () => clearInterval(timer);
+    }, [images.length]);
+
+    return (
+        <div className="relative h-48 w-full overflow-hidden rounded-t-xl bg-muted">
+            <AnimatePresence mode="wait">
+                <motion.img
+                    key={index}
+                    src={images[index]}
+                    initial={{ opacity: 0, x: 20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: -20 }}
+                    transition={{ duration: 0.5 }}
+                    className="h-full w-full object-cover"
+                    alt="Vista previa del proyecto"
+                />
+            </AnimatePresence>
+            <div className="absolute bottom-2 left-1/2 flex -translate-x-1/2 gap-1.5">
+                {images.map((_, i) => (
+                    <div 
+                        key={i} 
+                        className={`h-1.5 w-1.5 rounded-full transition-all ${i === index ? "bg-primary w-3" : "bg-white/50"}`} 
+                    />
+                ))}
+            </div>
+        </div>
+    );
+}
 
 export function Projects() {
     return (
@@ -20,28 +77,54 @@ export function Projects() {
                         Proyectos que hablan por sí solos
                     </h2>
                     <p className="mx-auto mt-4 max-w-xl text-lg leading-relaxed text-muted-foreground">
-                        No hace falta que nos creas a nosotros. Mirá el código, explorá los proyectos y sacá tus propias conclusiones.
+                        Soluciones reales desarrolladas con precisión técnica y enfoque comercial.
                     </p>
+                </motion.div>
 
-                    <motion.div
-                        initial={{ opacity: 0, y: 10 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: 0.2 }}
+                {/* Carrusel / Grid de Proyectos */}
+                <div className="mt-16 overflow-x-auto pb-8 scrollbar-hide snap-x snap-mandatory lg:overflow-visible">
+                    <div className="flex gap-6 md:grid md:grid-cols-3 md:gap-8">
+                        {PROJECTS_DATA.map((project) => (
+                            <motion.div
+                                key={project.id}
+                                whileHover={{ y: -5 }}
+                                className="min-w-[280px] flex-shrink-0 snap-center rounded-xl border border-border bg-card shadow-sm transition-all hover:shadow-lg md:min-w-0"
+                            >
+                                <AutoImageSwiper images={project.images} />
+                                <div className="p-6">
+                                    <h3 className="text-xl font-bold text-foreground">{project.title}</h3>
+                                    <p className="mt-2 text-sm text-muted-foreground line-clamp-2">
+                                        {project.description}
+                                    </p>
+                                    <button className="mt-4 flex items-center gap-1 text-sm font-semibold text-primary hover:underline">
+                                        Ver detalles <ChevronRight className="h-4 w-4" />
+                                    </button>
+                                </div>
+                            </motion.div>
+                        ))}
+                    </div>
+                </div>
+
+                {/* Botón Github */}
+                <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.2 }}
+                    className="text-center"
+                >
+                    <a 
+                        href="https://github.com/GB-Soluciones-Digitales"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="mt-8 inline-flex items-center gap-2 rounded-lg border border-border bg-card px-6 py-3.5 text-sm font-medium text-foreground transition-colors hover:bg-muted hover:border-primary/50 hover:shadow-md"
                     >
-                        <a 
-                            href="https://github.com/Brian13b"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="mt-8 inline-flex items-center gap-2 rounded-lg border border-border bg-card px-6 py-3.5 text-sm font-medium text-foreground transition-colors hover:bg-muted hover:border-primary/50 hover:shadow-md"
-                        >
-                            <Github className="h-5 w-5" />
-                            Ver proyectos en Github
-                            <ArrowUpRight className="h-4 w-4 text-muted-foreground" />
-                        </a>
-                    </motion.div>
+                        <Github className="h-5 w-5" />
+                        Ver proyectos en Github
+                        <ArrowUpRight className="h-4 w-4 text-muted-foreground" />
+                    </a>
                 </motion.div>
             </div>
         </section>
-    )
+    );
 }

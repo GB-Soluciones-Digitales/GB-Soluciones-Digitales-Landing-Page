@@ -13,13 +13,13 @@ const PROJECTS_DATA = [
         id: 2,
         title: "Ecommerce Camel Shop",
         description: "Tienda online moderna con carrito dinámico y catálogo autogestionable.",
-        images: ["/camel1.jpg", "/camel2.jpg"],
+        images: ["ecommerce/1.png", "ecommerce/2.png", "ecommerce/ecommerce1.jpeg", "ecommerce/ecommerce2.jpeg", "ecommerce/ecommerce5.jpeg", "ecommerce/ecommerce6.jpeg", "ecommerce/ecommerce3.jpeg", "ecommerce/ecommerce4.jpeg",],
     },
     {
         id: 3,
         title: "Plataforma Logística",
         description: "Seguimiento de flotas en tiempo real con integración de facturación.",
-        images: ["/log1.jpg", "/log2.jpg"],
+        images: ["/logistica/1.png", "/logistica/2.png", "/logistica/Dashboard.jpeg", "/logistica/GestionV.jpeg", "/logistica/ViajesModal.jpg", "/logistica/Reportes.jpg", "/logistica/Seguimiento.jpeg", "/logistica/Facturacion.jpeg", "/logistica/Finanzas.jpeg"],
     }
 ];
 
@@ -96,9 +96,6 @@ export function Projects() {
                                     <p className="mt-2 text-sm text-muted-foreground line-clamp-2">
                                         {project.description}
                                     </p>
-                                    <button className="mt-4 flex items-center gap-1 text-sm font-semibold text-primary hover:underline">
-                                        Ver detalles <ChevronRight className="h-4 w-4" />
-                                    </button>
                                 </div>
                             </motion.div>
                         ))}

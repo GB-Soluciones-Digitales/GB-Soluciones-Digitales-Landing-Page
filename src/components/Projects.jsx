@@ -83,7 +83,7 @@ export function Projects() {
 
                 {/* Carrusel / Grid de Proyectos */}
                 <div className="mt-16 overflow-x-auto pb-8 scrollbar-hide snap-x snap-mandatory lg:overflow-visible">
-                    <div className="flex gap-6 md:grid md:grid-cols-3 md:gap-8">
+                    <div className="grid grid-cols-1 gap-6 md:grid md:grid-cols-3 md:gap-8">
                         {PROJECTS_DATA.map((project) => (
                             <motion.div
                                 key={project.id}

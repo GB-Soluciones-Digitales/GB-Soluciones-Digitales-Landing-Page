@@ -1,31 +1,29 @@
 import React, { useState, useRef } from "react";
 import { Instagram, Mail, MessageCircle, Send, Loader2 } from 'lucide-react';
 import { motion } from "framer-motion";
-import emailjs from '@emailjs/browser'; //
+import emailjs from '@emailjs/browser';
 
 export function Contact() {
-    const formRef = useRef(); // Referencia al formulario para EmailJS
+    const formRef = useRef();
     const [loading, setLoading] = useState(false);
     const [submitted, setSubmitted] = useState(false);
     const [error, setError] = useState(false);
 
-    // Tus credenciales de EmailJS (Reemplázalas con las tuyas)
-    const SERVICE_ID = "service_xxxxxxx"; // Poné tu Service ID aquí
-    const TEMPLATE_ID = "template_xxxxxxx"; // Poné tu Template ID aquí
-    const PUBLIC_KEY = "xxxxxxxxxxxxxxx"; // Poné tu Public Key aquí
+    const SERVICE_ID = "service_q4w8m9j"; 
+    const TEMPLATE_ID = "template_zky36qc";
+    const PUBLIC_KEY = "RAeyrWItVRfOglG7h"; 
 
     const sendEmail = (e) => {
         e.preventDefault();
         setLoading(true);
         setError(false);
 
-        // Envío con EmailJS
         emailjs.sendForm(SERVICE_ID, TEMPLATE_ID, formRef.current, PUBLIC_KEY) //
             .then((result) => {
                 console.log(result.text);
                 setLoading(false);
                 setSubmitted(true);
-                e.target.reset(); // Limpia el formulario
+                e.target.reset(); 
             }, (error) => {
                 console.log(error.text);
                 setLoading(false);
@@ -37,7 +35,7 @@ export function Contact() {
         <section id="contacto" className="bg-background px-6 py-24 transition-colors duration-300">
             <div className="mx-auto max-w-6xl">
                 <div className="grid gap-16 lg:grid-cols-2">
-                    {/* Columna izquierda (Info de contacto) - Igual que antes */}
+                    {/* Columna izquierda */}
                     <motion.div
                         initial={{ opacity: 0, x: -30 }}
                         whileInView={{ opacity: 1, x: 0 }}
@@ -108,7 +106,6 @@ export function Contact() {
                             <form ref={formRef} onSubmit={sendEmail} className="flex flex-col gap-5">
                                 <div>
                                     <label htmlFor="nombre" className="mb-1.5 block text-sm font-medium text-foreground">Nombre</label>
-                                    {/* IMPORTANTE: name="nombre" debe coincidir con {{nombre}} en EmailJS */}
                                     <input
                                         type="text"
                                         name="nombre" 

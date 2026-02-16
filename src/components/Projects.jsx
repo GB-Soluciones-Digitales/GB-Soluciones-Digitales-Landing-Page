@@ -18,7 +18,7 @@ const PROJECTS_DATA = [
     {
         id: 3,
         title: "Plataforma Logística",
-        description: "Seguimiento de flotas en tiempo real con integración de facturación.",
+        description: "Plataforma de gestión logistica con seguimiento de flotas en tiempo real e integración con ARCA para facturación.",
         images: ["/logistica/1.png", "/logistica/2.png", "/logistica/Dashboard.jpeg", "/logistica/GestionV.jpeg", "/logistica/ViajesModal.jpg", "/logistica/Reportes.jpg", "/logistica/Seguimiento.jpeg", "/logistica/Facturacion.jpeg", "/logistica/Finanzas.jpeg"],
     }
 ];

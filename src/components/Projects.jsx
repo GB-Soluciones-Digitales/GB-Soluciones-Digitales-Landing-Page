@@ -99,9 +99,14 @@ export function Projects() {
                                     <p className="mt-2 text-sm text-muted-foreground line-clamp-2">
                                         {project.description}
                                     </p>
-                                    <button href={project.href} className="mt-4 flex items-center gap-1 text-sm font-semibold text-primary hover:underline">
+                                    <a
+                                        href={project.href}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-primary hover:underline"
+                                    >
                                         Visitar Página <ChevronRight className="h-4 w-4" />
-                                    </button>
+                                    </a>
                                 </div>
                             </motion.div>
                         ))}

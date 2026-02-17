@@ -8,18 +8,21 @@ const PROJECTS_DATA = [
         title: "Sistema Inmobiliario",
         description: "Gestión integral de propiedades y clientes con panel administrativo.",
         images: ["/inmobiliaria/1.png", "/inmobiliaria/2.png", "/inmobiliaria/Hero.jpeg", "/inmobiliaria/Ventas.jpeg", "/inmobiliaria/PropiedadDetalle.jpeg", "/inmobiliaria/PropiedadDetalle2.jpeg", "/inmobiliaria/Tasacion.jpeg", "/inmobiliaria/Contacto.jpeg"], 
+        href: "https://inmobiliariabottazzi.vercel.app",
     },
     {
         id: 2,
         title: "Ecommerce Camel Shop",
         description: "Tienda online moderna con carrito dinámico y catálogo autogestionable.",
         images: ["ecommerce/1.png", "ecommerce/2.png", "ecommerce/ecommerce1.jpeg", "ecommerce/ecommerce2.jpeg", "ecommerce/ecommerce5.jpeg", "ecommerce/ecommerce6.jpeg", "ecommerce/ecommerce3.jpeg", "ecommerce/ecommerce4.jpeg",],
+        href: "https://camelmodashop.vercel.app",
     },
     {
         id: 3,
         title: "Plataforma Logística",
         description: "Plataforma de gestión logistica con seguimiento en tiempo real y facturación.",
         images: ["/logistica/1.png", "/logistica/2.png", "/logistica/Dashboard.jpeg", "/logistica/GestionV.jpeg", "/logistica/ViajesModal.jpg", "/logistica/Reportes.jpg", "/logistica/Seguimiento.jpeg", "/logistica/Facturacion.jpeg", "/logistica/Finanzas.jpeg"],
+        href: "https://blogistica.vercel.app",
     }
 ];
 
@@ -96,6 +99,9 @@ export function Projects() {
                                     <p className="mt-2 text-sm text-muted-foreground line-clamp-2">
                                         {project.description}
                                     </p>
+                                    <button href={project.href} className="mt-4 flex items-center gap-1 text-sm font-semibold text-primary hover:underline">
+                                        Visitar Página <ChevronRight className="h-4 w-4" />
+                                    </button>
                                 </div>
                             </motion.div>
                         ))}

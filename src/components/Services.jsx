@@ -1,27 +1,37 @@
-import { LayoutDashboard, Monitor, Globe, Plug } from "lucide-react";
+import { Monitor, Smartphone, ShoppingCart, LayoutDashboard, Globe, Plug } from "lucide-react";
 import React from "react";
 import { motion } from "framer-motion";
 
 const services = [
     {
         icon: Monitor,
-        title: "Sistema web a medida",
-        description: "Nada de plantillas genéricas. Construimos la plataforma exacta que tu negocio necesita para operar mejor."
+        title: "Sistemas web a medida",
+        description: "Plataformas robustas y escalables. Construimos exactamente lo que necesitás, desde sistemas logísticos con seguimiento hasta herramientas operativas complejas."
+    },
+    {
+        icon: Smartphone,
+        title: "Progressive Web Apps (PWA)",
+        description: "Aplicaciones instalables en el celular. Rápidas y eficientes, funcionan perfectamente para personal en movimiento o sistemas de distribución."
+    },
+    {
+        icon: ShoppingCart,
+        title: "E-commerce y Catálogos",
+        description: "Llevá tu negocio al mundo digital. Tiendas online y catálogos autoadministrables para mostrar y vender productos sin intermediarios."
     },
     {
         icon: LayoutDashboard,
-        title: "Paneles de gestión y administración",
-        description: "Toda tu operación en un solo lugar. Controla datos, equipos y procesos desde un panel claro y fácil de usar."
+        title: "Paneles de gestión y reservas",
+        description: "Toda tu operación en un solo lugar. Administrá información, gestioná propiedades o automatizá la reserva de turnos de manera centralizada."
     },
     {
         icon: Globe,
         title: "Aplicaciones web modernas (SPA)",
-        description: "Interfaces rápidas y fluidas que tus usuarios van a querer usar. Sin recargas, sin esperas."
+        description: "Interfaces fluidas y dinámicas. Experiencias de usuario ultrarrápidas y sin recargas, ideales para mantener a tus clientes interactuando."
     },
     {
         icon: Plug,
-        title: "Integración y APIs",
-        description: "Conectamos tus herramientas actuales para que trabajen juntas. Sin duplicar datos, sin esfuerzo manual."
+        title: "Integración de APIs",
+        description: "Hacemos que tus sistemas se comuniquen. Conectamos herramientas de facturación electrónica, mapas y bases de datos externas sin esfuerzo manual."
     },
 ]
 
@@ -37,11 +47,11 @@ export function Services() {
                         Soluciones que resuelven problemas reales
                     </h2>
                     <p className="mt-4 text-lg leading-relaxed text-muted-foreground">
-                        No vendemos tecnología por vender. Cada solución está pensada para resolver un problema concreto de tu negocio.
+                        No vendemos tecnología por vender. Cada solución está pensada para resolver un problema concreto y generar un impacto directo en tu negocio.
                     </p>
                 </div>
                 
-                {/* Contenedor Grid Animado */}
+                {/* Contenedor Grid con 6 elementos */}
                 <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
                     {services.map((service, index) =>(
                         <motion.div 
@@ -49,7 +59,7 @@ export function Services() {
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            transition={{ duration: 0.5, delay: index * 0.1 }} 
+                            transition={{ duration: 0.5, delay: index * 0.1 }}
                             className="group rounded-xl border border-border bg-card p-8 transition-colors hover:border-primary/50 hover:shadow-lg dark:hover:border-primary/50"
                         >
                             <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10 text-primary transition-colors group-hover:bg-primary group-hover:text-primary-foreground">

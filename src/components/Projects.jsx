@@ -14,7 +14,7 @@ const PROJECTS_DATA = [
         id: 2,
         title: "Ecommerce Camel Shop",
         description: "Tienda online moderna con carrito dinámico y catálogo autogestionable.",
-        images: ["ecommerce/ecommerce-responsive.png", "ecommerce/ecommerce-inicio.jpeg", "ecommerce/ecommerce-inicio-2.jpeg", "ecommerce/ecommerce-catalogo.jpeg", "ecommerce/ecommerce-prenda-detalle.jpeg", "ecommerce/ecommerce-carrito.jpeg", "ecommerce/ecommerce-checkout.jpeg", "ecommerce/ecommerce-contacto.jpeg", "ecommerce/ecommerce-contacto-2.jpeg", "ecommerce/ecommerce-admin-login.png", "ecommerce/ecommerce-admin-panel.png", "ecommerce/ecommerce-admin-pedidos.png", "ecommerce/ecommerce-admin-hero.png"],
+        images: ["ecommerce/ecommerce-resposive.png", "ecommerce/ecommerce-inicio.jpeg", "ecommerce/ecommerce-inicio-2.jpeg", "ecommerce/ecommerce-catalogo.jpeg", "ecommerce/ecommerce-prenda-detalle.jpeg", "ecommerce/ecommerce-carrito.jpeg", "ecommerce/ecommerce-checkout.jpeg", "ecommerce/ecommerce-contacto.jpeg", "ecommerce/ecommerce-contacto-2.jpeg", "ecommerce/ecommerce-admin-login.png", "ecommerce/ecommerce-admin-panel.png", "ecommerce/ecommerce-admin-pedidos.png", "ecommerce/ecommerce-admin-hero.png"],
         href: "https://camelmodashop.vercel.app",
     },
     {

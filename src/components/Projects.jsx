@@ -196,7 +196,7 @@ export function Projects() {
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
-                        className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-background/95 backdrop-blur-md p-4 sm:p-6"
+                        className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-background/40 backdrop-blur-xl p-4 sm:p-6"
                     >
                         <button 
                             onClick={closeLightbox}
@@ -233,9 +233,6 @@ export function Projects() {
                         </div>
 
                         <div className="text-center mb-6">
-                            <h3 className="font-heading text-xl font-bold text-foreground">
-                                {selectedProject.title}
-                            </h3>
                             <p className="text-sm text-muted-foreground">
                                 Imagen {currentImageIndex + 1} de {selectedProject.images.length}
                             </p>

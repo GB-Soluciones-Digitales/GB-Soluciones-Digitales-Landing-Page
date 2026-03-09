@@ -238,7 +238,7 @@ export function Projects() {
                             </p>
                         </div>
 
-                        <div className="flex w-full max-w-3xl justify-center gap-3 overflow-x-auto scrollbar-hide pb-4 px-2">
+                        <div className="flex w-full max-w-3xl justify-start md:justify-center gap-3 overflow-x-auto pb-4 px-2 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
                             {selectedProject.images.map((img, index) => (
                                 <button
                                     key={index}

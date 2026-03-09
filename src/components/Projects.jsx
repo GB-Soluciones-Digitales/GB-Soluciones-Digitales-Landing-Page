@@ -196,7 +196,7 @@ export function Projects() {
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
-                        className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-background/40 backdrop-blur-xl p-4 sm:p-6"
+                        className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-background/20 backdrop-blur-xl p-4 sm:p-6"
                     >
                         <button 
                             onClick={closeLightbox}
@@ -238,7 +238,7 @@ export function Projects() {
                             </p>
                         </div>
 
-                        <div className="flex w-full max-w-3xl justify-center gap-3 overflow-x-auto pb-4 px-2">
+                        <div className="flex w-full max-w-3xl justify-center gap-3 overflow-x-auto scrollbar-hide pb-4 px-2">
                             {selectedProject.images.map((img, index) => (
                                 <button
                                     key={index}

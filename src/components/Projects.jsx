@@ -1,5 +1,5 @@
-import { ArrowUpRight, Github, ChevronRight } from "lucide-react";
-import React, { useState, useEffect } from "react";
+import { ArrowUpRight, Github, ChevronRight, ChevronLeft, X, ZoomIn } from "lucide-react";
+import React, { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const PROJECTS_DATA = [
@@ -8,7 +8,7 @@ const PROJECTS_DATA = [
         title: "Sistema Inmobiliario",
         description: "Gestión integral de propiedades y clientes con panel administrativo.",
         images: ["/inmobiliaria/1.png", "/inmobiliaria/2.png", "/inmobiliaria/Hero.jpeg", "/inmobiliaria/Ventas.jpeg", "/inmobiliaria/PropiedadDetalle.jpeg", "/inmobiliaria/PropiedadDetalle2.jpeg", "/inmobiliaria/Tasacion.jpeg", "/inmobiliaria/Contacto.jpeg"], 
-        href: "https://inmobiliariabottazzi.vercel.app",
+        href: "https://inmobiliariabottazzi.com.ar",
     },
     {
         id: 2,
@@ -50,7 +50,7 @@ function AutoImageSwiper({ images }) {
                     alt="Vista previa del proyecto"
                 />
             </AnimatePresence>
-            <div className="absolute bottom-2 left-1/2 flex -translate-x-1/2 gap-1.5">
+            <div className="absolute bottom-2 left-1/2 flex -translate-x-1/2 gap-1.5 z-10">
                 {images.map((_, i) => (
                     <div 
                         key={i} 
@@ -63,6 +63,47 @@ function AutoImageSwiper({ images }) {
 }
 
 export function Projects() {
+    const [selectedProject, setSelectedProject] = useState(null);
+    const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+    const closeLightbox = useCallback(() => setSelectedProject(null), []);
+    
+    const nextImage = useCallback(() => {
+        if (!selectedProject) return;
+        setCurrentImageIndex((prev) => 
+            prev === selectedProject.images.length - 1 ? 0 : prev + 1
+        );
+    }, [selectedProject]);
+
+    const prevImage = useCallback(() => {
+        if (!selectedProject) return;
+        setCurrentImageIndex((prev) => 
+            prev === 0 ? selectedProject.images.length - 1 : prev - 1
+        );
+    }, [selectedProject]);
+
+    useEffect(() => {
+        const handleKeyDown = (e) => {
+            if (!selectedProject) return;
+            if (e.key === "ArrowRight") nextImage();
+            if (e.key === "ArrowLeft") prevImage();
+            if (e.key === "Escape") closeLightbox();
+        };
+
+        window.addEventListener("keydown", handleKeyDown);
+        
+        if (selectedProject) {
+            document.body.style.overflow = "hidden";
+        } else {
+            document.body.style.overflow = "auto";
+        }
+
+        return () => {
+            window.removeEventListener("keydown", handleKeyDown);
+            document.body.style.overflow = "auto";
+        };
+    }, [selectedProject, nextImage, prevImage, closeLightbox]);
+
     return (
         <section id="proyectos" className="bg-background px-6 py-24 transition-colors duration-300">
             <div className="mx-auto max-w-6xl">
@@ -91,19 +132,34 @@ export function Projects() {
                             <motion.div
                                 key={project.id}
                                 whileHover={{ y: -5 }}
-                                className="min-w-[280px] flex-shrink-0 snap-center rounded-xl border border-border bg-card shadow-sm transition-all hover:shadow-lg md:min-w-0"
+                                className="min-w-[280px] flex-shrink-0 snap-center rounded-xl border border-border bg-card shadow-sm transition-all hover:shadow-lg md:min-w-0 flex flex-col"
                             >
-                                <AutoImageSwiper images={project.images} />
-                                <div className="p-6">
+                                <div 
+                                    className="relative cursor-pointer group rounded-t-xl overflow-hidden"
+                                    onClick={() => {
+                                        setSelectedProject(project);
+                                        setCurrentImageIndex(0);
+                                    }}
+                                >
+                                    <AutoImageSwiper images={project.images} />
+                                    <div className="absolute inset-0 z-20 flex items-center justify-center bg-background/0 opacity-0 backdrop-blur-none transition-all duration-300 group-hover:bg-background/40 group-hover:opacity-100 group-hover:backdrop-blur-sm">
+                                        <div className="flex items-center gap-2 rounded-full bg-primary px-4 py-2 text-sm font-medium text-primary-foreground shadow-xl">
+                                            <ZoomIn className="h-4 w-4" />
+                                            Ver galería
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div className="p-6 flex flex-col flex-1">
                                     <h3 className="text-xl font-bold text-foreground">{project.title}</h3>
-                                    <p className="mt-2 text-sm text-muted-foreground line-clamp-2">
+                                    <p className="mt-2 text-sm text-muted-foreground line-clamp-2 flex-1">
                                         {project.description}
                                     </p>
                                     <a
                                         href={project.href}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-primary hover:underline"
+                                        className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-primary hover:underline w-fit"
                                     >
                                         Visitar Página <ChevronRight className="h-4 w-4" />
                                     </a>
@@ -113,7 +169,6 @@ export function Projects() {
                     </div>
                 </div>
 
-                {/* Botón Github */}
                 <motion.div
                     initial={{ opacity: 0, y: 10 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -133,6 +188,81 @@ export function Projects() {
                     </a>
                 </motion.div>
             </div>
+
+            {/* LIGHTBOX */}
+            <AnimatePresence>
+                {selectedProject && (
+                    <motion.div 
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-background/95 backdrop-blur-md p-4 sm:p-6"
+                    >
+                        <button 
+                            onClick={closeLightbox}
+                            className="absolute right-6 top-6 z-50 rounded-full bg-card/50 p-3 text-foreground transition-colors hover:bg-destructive hover:text-destructive-foreground"
+                            aria-label="Cerrar galería"
+                        >
+                            <X className="h-6 w-6" />
+                        </button>
+
+                        <div className="relative flex w-full max-w-5xl flex-1 items-center justify-center mt-12 mb-4">
+                            <button 
+                                onClick={(e) => { e.stopPropagation(); prevImage(); }}
+                                className="absolute left-0 z-10 -ml-2 rounded-full bg-background/80 p-3 text-foreground shadow-lg backdrop-blur-sm transition-all hover:bg-primary hover:text-primary-foreground sm:left-4"
+                            >
+                                <ChevronLeft className="h-8 w-8" />
+                            </button>
+
+                            <motion.img 
+                                key={currentImageIndex}
+                                initial={{ opacity: 0, scale: 0.95 }}
+                                animate={{ opacity: 1, scale: 1 }}
+                                transition={{ duration: 0.2 }}
+                                src={selectedProject.images[currentImageIndex]} 
+                                alt={`${selectedProject.title} - Imagen ${currentImageIndex + 1}`}
+                                className="max-h-[70vh] w-auto max-w-full rounded-lg object-contain shadow-2xl"
+                            />
+
+                            <button 
+                                onClick={(e) => { e.stopPropagation(); nextImage(); }}
+                                className="absolute right-0 z-10 -mr-2 rounded-full bg-background/80 p-3 text-foreground shadow-lg backdrop-blur-sm transition-all hover:bg-primary hover:text-primary-foreground sm:right-4"
+                            >
+                                <ChevronRight className="h-8 w-8" />
+                            </button>
+                        </div>
+
+                        <div className="text-center mb-6">
+                            <h3 className="font-heading text-xl font-bold text-foreground">
+                                {selectedProject.title}
+                            </h3>
+                            <p className="text-sm text-muted-foreground">
+                                Imagen {currentImageIndex + 1} de {selectedProject.images.length}
+                            </p>
+                        </div>
+
+                        <div className="flex w-full max-w-3xl justify-center gap-3 overflow-x-auto pb-4 px-2">
+                            {selectedProject.images.map((img, index) => (
+                                <button
+                                    key={index}
+                                    onClick={() => setCurrentImageIndex(index)}
+                                    className={`relative h-16 w-24 shrink-0 overflow-hidden rounded-md transition-all ${
+                                        currentImageIndex === index 
+                                        ? "ring-2 ring-primary ring-offset-2 ring-offset-background scale-105 opacity-100" 
+                                        : "opacity-50 hover:opacity-100"
+                                    }`}
+                                >
+                                    <img 
+                                        src={img} 
+                                        alt={`Miniatura ${index + 1}`} 
+                                        className="h-full w-full object-cover"
+                                    />
+                                </button>
+                            ))}
+                        </div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
         </section>
     );
 }

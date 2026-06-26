@@ -92,7 +92,7 @@ export function ChatWidget() {
               <Bot size={20} />
               <span className="font-semibold text-sm">GiBi Asistente Virtual</span>
             </div>
-            <button 
+            <button
               onClick={() => setIsOpen(false)}
               className="text-primary-foreground/80 hover:text-white transition-colors p-2 -mr-2"
             >
@@ -131,7 +131,7 @@ export function ChatWidget() {
           </div>
 
           {/* Input de texto */}
-          <form onSubmit={sendMessage} className="flex-shrink-0 p-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] bg-background border-t border-border flex gap-2 items-center">  
+          <form onSubmit={sendMessage} className="flex-shrink-0 p-3 bg-background border-t border-border flex gap-2 items-center">
             <input
               ref={inputRef}
               type="text"

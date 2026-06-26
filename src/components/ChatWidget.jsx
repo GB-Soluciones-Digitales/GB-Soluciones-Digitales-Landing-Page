@@ -126,14 +126,14 @@ export function ChatWidget() {
               value={inputValue}
               onChange={(e) => setInputValue(e.target.value)}
               placeholder="Escribe tu mensaje..."
-              className="flex-1 bg-muted text-foreground placeholder:text-muted-foreground px-4 py-3 sm:py-2 rounded-full text-sm outline-none focus:ring-1 focus:ring-primary"
+              className="flex-1 bg-muted text-foreground placeholder:text-muted-foreground px-4 py-3 sm:py-2 rounded-full text-base sm:text-sm outline-none focus:ring-1 focus:ring-primary"
             />
             <button 
               type="submit" 
               disabled={!inputValue.trim() || isLoading}
               className="bg-primary text-primary-foreground p-2 rounded-full hover:opacity-90 transition-opacity disabled:opacity-50 flex items-center justify-center h-11 w-11 sm:h-10 sm:w-10 shrink-0"
             >
-              <Send size={18} className="ml-1 sm:ml-0" />
+              <Send size={18} />
             </button>
           </form>
         </div>

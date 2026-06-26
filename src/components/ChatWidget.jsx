@@ -37,7 +37,7 @@ export function ChatWidget() {
     setIsLoading(true);
 
     try {
-      const response = await fetch('http://botgbsolucionesdigitales-production.up.railway.app/api/chat-web', {
+      const response = await fetch('https://botgbsolucionesdigitales-production.up.railway.app/api/chat-web', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

@@ -73,7 +73,7 @@ export function ChatWidget() {
     <>
       {/* Ventana de Chat */}
       {isOpen && (
-        <div className="fixed inset-0 z-[100] sm:inset-auto sm:bottom-24 sm:right-6 w-full h-[100dvh] sm:w-[380px] sm:h-[500px] bg-card sm:border sm:border-border sm:rounded-xl shadow-2xl flex flex-col overflow-hidden animate-in fade-in zoom-in-95 duration-200">
+        <div className="fixed inset-0 z-[100] sm:inset-auto sm:bottom-24 sm:right-6 w-full h-[85dvh] sm:w-[380px] sm:h-[500px] bg-card sm:border sm:border-border sm:rounded-xl shadow-2xl flex flex-col overflow-hidden animate-in fade-in zoom-in-95 duration-200">
           
           {/* Header */}
           <div className="bg-primary text-primary-foreground p-4 flex justify-between items-center shadow-md">

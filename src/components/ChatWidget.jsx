@@ -11,15 +11,15 @@ export function ChatWidget() {
   const inputRef = useRef(null);
 
   useEffect(() => {
-    let currentSession = localStorage.getItem('gb_chat_session');
+    let currentSession = sessionStorage.getItem('gb_chat_session');
     if (!currentSession) {
       currentSession = crypto.randomUUID();
-      localStorage.setItem('gb_chat_session', currentSession);
+      sessionStorage.setItem('gb_chat_session', currentSession);
     }
     setSessionId(currentSession);
     
     setMessages([
-      { role: 'assistant', content: '¡Hola! Soy  GiBi, el asistente virtual de GB Soluciones Digitales. ¿En qué te puedo ayudar hoy?' }
+      { role: 'assistant', content: '¡Hola! Soy GiBi, el asistente virtual de GB Soluciones Digitales. ¿En qué te puedo ayudar hoy?' }
     ]);
   }, []);
 

@@ -19,7 +19,7 @@ export function ChatWidget() {
     setSessionId(currentSession);
     
     setMessages([
-      { role: 'assistant', content: '¡Hola! Soy el asistente virtual de GB Soluciones Digitales. ¿En qué te puedo ayudar hoy?' }
+      { role: 'assistant', content: '¡Hola! Soy  GiBi, el asistente virtual de GB Soluciones Digitales. ¿En qué te puedo ayudar hoy?' }
     ]);
   }, []);
 
@@ -78,7 +78,7 @@ export function ChatWidget() {
           <div className="bg-primary text-primary-foreground p-4 flex justify-between items-center shadow-md">
             <div className="flex items-center gap-2">
               <Bot size={20} />
-              <span className="font-semibold text-sm">Asistente GB</span>
+              <span className="font-semibold text-sm">GiBi Asistente Virtual</span>
             </div>
             <button 
               onClick={() => setIsOpen(false)}
@@ -127,14 +127,14 @@ export function ChatWidget() {
               onChange={(e) => setInputValue(e.target.value)}
               placeholder="Escribe tu mensaje..."
               disabled={isLoading}
-              className="flex-1 bg-muted px-4 py-2 rounded-full text-sm outline-none focus:ring-1 focus:ring-primary disabled:opacity-50"
+              className="flex-1 bg-muted px-4 py-2 rounded-full text-sm outline-none dark:text-white focus:ring-1 focus:ring-primary disabled:opacity-50"
             />
             <button 
               type="submit" 
               disabled={!inputValue.trim() || isLoading}
               className="bg-primary text-primary-foreground p-2 rounded-full hover:opacity-90 transition-opacity disabled:opacity-50 flex items-center justify-center h-10 w-10 shrink-0"
             >
-              <Send size={18} className="ml-1" />
+              <Send size={18} />
             </button>
           </form>
         </div>

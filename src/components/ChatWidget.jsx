@@ -35,6 +35,22 @@ export function ChatWidget() {
     }
   }, [isLoading, isOpen]);
 
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+      document.body.style.position = 'fixed';
+      document.body.style.width = '100%';
+    } else {
+      document.body.style.overflow = 'unset';
+      document.body.style.position = 'static';
+    }
+    
+    return () => {
+      document.body.style.overflow = 'unset';
+      document.body.style.position = 'static';
+    };
+  }, [isOpen]);
+
   const sendMessage = async (e) => {
     e.preventDefault();
     if (!inputValue.trim()) return;
@@ -75,7 +91,7 @@ export function ChatWidget() {
       {isOpen && (
         <div className="fixed inset-0 z-[100] sm:inset-auto sm:bottom-24 sm:right-6 w-full sm:w-[380px] sm:h-[500px] bg-card sm:border sm:border-border sm:rounded-xl shadow-2xl flex flex-col overflow-hidden animate-in fade-in zoom-in-95 duration-200">  
           {/* Header */}
-          <div className="bg-primary text-primary-foreground p-4 flex justify-between items-center shadow-md">
+          <div className="flex-shrink-0 bg-primary text-primary-foreground p-4 flex justify-between items-center shadow-md">
             <div className="flex items-center gap-2">
               <Bot size={20} />
               <span className="font-semibold text-sm">GiBi Asistente Virtual</span>
@@ -119,7 +135,7 @@ export function ChatWidget() {
           </div>
 
           {/* Input de texto */}
-          <form onSubmit={sendMessage} className="p-3 bg-background border-t border-border flex gap-2 items-center">
+          <form onSubmit={sendMessage} className="flex-shrink-0 p-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] bg-background border-t border-border flex gap-2 items-center">  
             <input
               ref={inputRef}
               type="text"

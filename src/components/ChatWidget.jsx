@@ -38,16 +38,12 @@ export function ChatWidget() {
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = 'hidden';
-      document.body.style.position = 'fixed';
-      document.body.style.width = '100%';
     } else {
       document.body.style.overflow = 'unset';
-      document.body.style.position = 'static';
     }
     
     return () => {
       document.body.style.overflow = 'unset';
-      document.body.style.position = 'static';
     };
   }, [isOpen]);
 
@@ -89,7 +85,7 @@ export function ChatWidget() {
     <>
       {/* Ventana de Chat */}
       {isOpen && (
-        <div className="fixed inset-0 z-[100] sm:inset-auto sm:bottom-24 sm:right-6 w-full sm:w-[380px] sm:h-[500px] bg-card sm:border sm:border-border sm:rounded-xl shadow-2xl flex flex-col overflow-hidden animate-in fade-in zoom-in-95 duration-200">  
+        <div className="fixed inset-0 z-[100] sm:inset-auto sm:bottom-24 sm:right-6 w-full sm:w-[380px] sm:h-[500px] bg-card sm:border sm:border-border sm:rounded-xl shadow-2xl flex flex-col overflow-hidden animate-in fade-in zoom-in-95 duration-200">
           {/* Header */}
           <div className="flex-shrink-0 bg-primary text-primary-foreground p-4 flex justify-between items-center shadow-md">
             <div className="flex items-center gap-2">

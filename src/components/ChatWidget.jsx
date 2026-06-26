@@ -70,10 +70,11 @@ export function ChatWidget() {
   };
 
   return (
-    <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end">
+    <>
       {/* Ventana de Chat */}
       {isOpen && (
-        <div className="mb-4 w-[350px] sm:w-[380px] h-[500px] bg-card border border-border rounded-xl shadow-2xl flex flex-col overflow-hidden">
+        <div className="fixed inset-0 z-[100] sm:inset-auto sm:bottom-24 sm:right-6 w-full h-[100dvh] sm:w-[380px] sm:h-[500px] bg-card sm:border sm:border-border sm:rounded-xl shadow-2xl flex flex-col overflow-hidden animate-in fade-in zoom-in-95 duration-200">
+          
           {/* Header */}
           <div className="bg-primary text-primary-foreground p-4 flex justify-between items-center shadow-md">
             <div className="flex items-center gap-2">
@@ -82,7 +83,7 @@ export function ChatWidget() {
             </div>
             <button 
               onClick={() => setIsOpen(false)}
-              className="text-primary-foreground/80 hover:text-white transition-colors"
+              className="text-primary-foreground/80 hover:text-white transition-colors p-2 -mr-2"
             >
               <X size={20} />
             </button>
@@ -119,34 +120,34 @@ export function ChatWidget() {
           </div>
 
           {/* Input de texto */}
-          <form onSubmit={sendMessage} className="p-3 bg-background border-t border-border flex gap-2">
+          <form onSubmit={sendMessage} className="p-3 bg-background border-t border-border flex gap-2 items-center">
             <input
               ref={inputRef}
               type="text"
               value={inputValue}
               onChange={(e) => setInputValue(e.target.value)}
               placeholder="Escribe tu mensaje..."
-              disabled={isLoading}
-              className="flex-1 bg-muted px-4 py-2 rounded-full text-sm outline-none dark:text-white focus:ring-1 focus:ring-primary disabled:opacity-50"
+              className="flex-1 bg-muted text-foreground placeholder:text-muted-foreground px-4 py-3 sm:py-2 rounded-full text-sm outline-none focus:ring-1 focus:ring-primary"
             />
             <button 
               type="submit" 
               disabled={!inputValue.trim() || isLoading}
-              className="bg-primary text-primary-foreground p-2 rounded-full hover:opacity-90 transition-opacity disabled:opacity-50 flex items-center justify-center h-10 w-10 shrink-0"
+              className="bg-primary text-primary-foreground p-2 rounded-full hover:opacity-90 transition-opacity disabled:opacity-50 flex items-center justify-center h-11 w-11 sm:h-10 sm:w-10 shrink-0"
             >
-              <Send size={18} />
+              <Send size={18} className="ml-1 sm:ml-0" />
             </button>
           </form>
         </div>
       )}
 
-      {/* Botón Flotante */}
-      <button
-        onClick={() => setIsOpen(!isOpen)}
-        className={`bg-primary text-primary-foreground p-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 ${isOpen ? 'rotate-90 scale-0 opacity-0 absolute' : 'rotate-0 scale-100 opacity-100 relative'}`}
-      >
-        <MessageCircle size={28} />
-      </button>
-    </div>
+      <div className="fixed bottom-6 right-6 z-[90]">
+        <button
+          onClick={() => setIsOpen(!isOpen)}
+          className={`bg-primary text-primary-foreground p-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 ${isOpen ? 'rotate-90 scale-0 opacity-0' : 'rotate-0 scale-100 opacity-100'}`}
+        >
+          <MessageCircle size={28} />
+        </button>
+      </div>
+    </>
   );
 }

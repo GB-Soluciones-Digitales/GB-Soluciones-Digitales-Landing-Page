@@ -19,7 +19,7 @@ Sigue estos pasos para correr el proyecto localmente:
 
 1.  **Clonar el repositorio:**
     ```bash
-    git clone [https://github.com/tu-usuario/gb-soluciones-digitales.git](https://github.com/tu-usuario/gb-soluciones-digitales.git)
+    git clone [https://github.com/GB-Soluciones-Digitales/GB-Soluciones-Digitales-Landing-Page.git](https://github.com/GB-Soluciones-Digitales/GB-Soluciones-Digitales-Landing-Page.git)
     cd gb-soluciones-digitales
     ```
 

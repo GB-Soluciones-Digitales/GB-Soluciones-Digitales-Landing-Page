@@ -8,6 +8,7 @@ export function ChatWidget() {
   const [isLoading, setIsLoading] = useState(false);
   const [sessionId, setSessionId] = useState('');
   const messagesEndRef = useRef(null);
+  const inputRef = useRef(null);
 
   useEffect(() => {
     let currentSession = localStorage.getItem('gb_chat_session');
@@ -26,6 +27,13 @@ export function ChatWidget() {
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages]);
+
+  // Auto-focus en el input cuando se abre el chat
+  useEffect(() => {
+    if (!isLoading && isOpen && inputRef.current) {
+      inputRef.current.focus();
+    }
+  }, [isLoading, isOpen]);
 
   const sendMessage = async (e) => {
     e.preventDefault();
@@ -113,6 +121,7 @@ export function ChatWidget() {
           {/* Input de texto */}
           <form onSubmit={sendMessage} className="p-3 bg-background border-t border-border flex gap-2">
             <input
+              ref={inputRef}
               type="text"
               value={inputValue}
               onChange={(e) => setInputValue(e.target.value)}

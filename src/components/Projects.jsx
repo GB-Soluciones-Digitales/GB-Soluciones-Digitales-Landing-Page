@@ -1,26 +1,47 @@
 import { ArrowUpRight, Github, ChevronRight, ChevronLeft, X, ZoomIn } from "lucide-react";
 import React, { useState, useEffect, useCallback } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { AnimatePresence } from "framer-motion";
 
 const PROJECTS_DATA = [
     {
         id: 1,
         title: "Sistema Inmobiliario",
-        description: "Gestión integral de propiedades y clientes con panel administrativo.",
+        description: "Web corporativa con panel administrativo fácil de usar para cargar nuevas propiedades, gestionar clientes y recibir consultas.",
         images: ["/inmobiliaria/1.png", "/inmobiliaria/2.png", "/inmobiliaria/Hero.jpeg", "/inmobiliaria/Ventas.jpeg", "/inmobiliaria/PropiedadDetalle.jpeg", "/inmobiliaria/PropiedadDetalle2.jpeg", "/inmobiliaria/Tasacion.jpeg", "/inmobiliaria/Contacto.jpeg"], 
         href: "https://inmobiliariabottazzi.com.ar",
     },
     {
         id: 2,
+        title: "MM Entrenamiento",
+        description: "Aplicación para gimnasio. Automatiza la reserva de turnos, controla los cupos disponibles, gestiona las membresías y ayuda a retener a los alumnos.",
+        images: ["/mmentrenamiento/Mockup-MMEntrenamiento.png", "/mmentrenamiento/Alumno_Dashboard.jpeg", "/mmentrenamiento/Alumno_Perfil.jpeg", "/mmentrenamiento/Alumno_Horarios.jpeg", "/mmentrenamiento/Alumno_Turnos.jpeg", "/mmentrenamiento/Admin_Dashboard.png", "/mmentrenamiento/Admin_Ajustes.png", "/mmentrenamiento/Admin_Horarios.png", "/mmentrenamiento/Profe_Asistencia.png"], 
+        href: "https://mm-entrenamiento.vercel.app",
+    },
+    {
+        id: 3,
         title: "Ecommerce Camel Shop",
-        description: "Tienda online moderna con carrito dinámico y catálogo autogestionable.",
+        description: "Tienda online moderna y rápida. Incluye catálogo autogestionable, carrito de compras dinámico y finalización de pedidos conectada directamente a WhatsApp.",
         images: ["ecommerce/ecommerce-resposive.png", "ecommerce/ecommerce-inicio.jpeg", "ecommerce/ecommerce-inicio-2.jpeg", "ecommerce/ecommerce-catalogo.jpeg", "ecommerce/ecommerce-prenda-detalle.jpeg", "ecommerce/ecommerce-carrito.jpeg", "ecommerce/ecommerce-checkout.jpeg", "ecommerce/ecommerce-contacto.jpeg", "ecommerce/ecommerce-contacto-2.jpeg", "ecommerce/ecommerce-admin-login.png", "ecommerce/ecommerce-admin-panel.png", "ecommerce/ecommerce-admin-pedidos.png", "ecommerce/ecommerce-admin-hero.png"],
         href: "https://camelmodashop.vercel.app",
     },
     {
-        id: 3,
+        id: 4,
+        title: "Gestión Logística DaniPak",
+        description: "Plataforma a medida para empresas de encomiendas. Digitaliza todo el proceso: generación rápida de comprobantes, control de remitos, facturación y gestión de cuentas corrientes.",
+        images: ["/danipak/Mock-danipak.png"], 
+        href: "https://github.com/GB-Soluciones-Digitales/sistema_gestion_logistica_danipak",
+    },
+    {
+        id: 5,
+        title: "DripGestión - SaaS Multi-tenant",
+        description: "Sistema integral para optimizar el reparto. Organiza rutas y permite a los choferes registrar ventas y cobranzas desde la calle, incluso si se quedan sin señal de internet.",
+        images: ["/dripgestion/Dripgestion_Login.png"], 
+        href: "https://arlestin.vercel.app",
+    },
+    {
+        id: 6,
         title: "Plataforma Logística",
-        description: "Plataforma de gestión logistica con seguimiento en tiempo real y facturación.",
+        description: "Plataforma avanzada para transporte de cargas. Permite el seguimiento de vehículos por GPS en tiempo real, gestión de viajes y facturación electrónica automatizada.",
         images: ["/logistica/1.png", "/logistica/2.png", "/logistica/Dashboard.jpeg", "/logistica/GestionV.jpeg", "/logistica/ViajesModal.jpg", "/logistica/Reportes.jpg", "/logistica/Seguimiento.jpeg", "/logistica/Facturacion.jpeg", "/logistica/Finanzas.jpeg"],
         href: "https://blogistica.vercel.app",
     }
@@ -132,7 +153,7 @@ export function Projects() {
                             <motion.div
                                 key={project.id}
                                 whileHover={{ y: -5 }}
-                                className="min-w-[280px] flex-shrink-0 snap-center rounded-xl border border-border bg-card shadow-sm transition-all hover:shadow-lg md:min-w-0 flex flex-col"
+                                className="min-w-70 shrink-0 snap-center rounded-xl border border-border bg-card shadow-sm transition-all hover:shadow-lg md:min-w-0 flex flex-col"
                             >
                                 <div 
                                     className="relative cursor-pointer group rounded-t-xl overflow-hidden"

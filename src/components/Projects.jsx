@@ -173,7 +173,7 @@ export function Projects() {
                                 
                                 <div className="p-6 flex flex-col flex-1">
                                     <h3 className="text-xl font-bold text-foreground">{project.title}</h3>
-                                    <p className="mt-2 text-sm text-muted-foreground line-clamp-2 flex-1">
+                                    <p className="mt-2 text-sm text-muted-foreground line-clamp-4 flex-1">
                                         {project.description}
                                     </p>
                                     <a

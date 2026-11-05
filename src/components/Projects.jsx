@@ -1,6 +1,6 @@
 import { ArrowUpRight, Github, ChevronRight, ChevronLeft, X, ZoomIn } from "lucide-react";
 import React, { useState, useEffect, useCallback } from "react";
-import { AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 
 const PROJECTS_DATA = [
     {
